@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.hansliao.springboot_mall.constant.ProductCategory;
 import com.hansliao.springboot_mall.model.Product;
 
 public class ProductRowMapper implements RowMapper<Product>{
@@ -14,7 +16,9 @@ public class ProductRowMapper implements RowMapper<Product>{
 
         product.setProductId(resultSet.getInt("product_id"));
         product.setProductName(resultSet.getString("product_name"));
-        product.setCategory(resultSet.getString("category"));
+
+        product.setCategory(ProductCategory.valueOf(resultSet.getString("category")));
+
         product.setImageUrl(resultSet.getString("image_url"));
         product.setPrice(resultSet.getInt("price"));
         product.setStock(resultSet.getInt("stock"));
