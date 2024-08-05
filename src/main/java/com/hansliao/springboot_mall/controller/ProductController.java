@@ -1,5 +1,7 @@
 package com.hansliao.springboot_mall.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,13 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> productList= productService.getProducts();
+
+        return ResponseEntity.status(HttpStatus.OK).body(productList);
+    }
     
     // 取得商品功能
     @GetMapping("/products/{productId}")

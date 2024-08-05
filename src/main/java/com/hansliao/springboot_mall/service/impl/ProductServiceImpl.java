@@ -1,5 +1,7 @@
 package com.hansliao.springboot_mall.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,5 +34,9 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProductById(Integer productId){
         productDao.deleteProductById(productId);
+    }
+
+    public List<Product> getProducts(){
+        return productDao.getProducts();
     }
 }

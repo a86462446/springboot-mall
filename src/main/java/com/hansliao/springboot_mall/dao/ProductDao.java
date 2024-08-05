@@ -1,5 +1,7 @@
 package com.hansliao.springboot_mall.dao;
 
+import java.util.List;
+
 import com.hansliao.springboot_mall.dto.ProductRequest;
 import com.hansliao.springboot_mall.model.Product;
 
@@ -12,4 +14,6 @@ public interface ProductDao {
     void updateProduct(Integer productId, ProductRequest productRequest);
 
     void deleteProductById(Integer productId);
+
+    List<Product> getProducts();
 }
