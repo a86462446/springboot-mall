@@ -31,6 +31,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProductById(Integer productId){
-        productDao.deleteProduct(productId);
+        productDao.deleteProductById(productId);
     }
 }
