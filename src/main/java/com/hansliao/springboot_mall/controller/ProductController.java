@@ -23,6 +23,7 @@ import com.hansliao.springboot_mall.dto.ProductQueryParams;
 import com.hansliao.springboot_mall.dto.ProductRequest;
 import com.hansliao.springboot_mall.model.Product;
 import com.hansliao.springboot_mall.service.ProductService;
+import com.hansliao.springboot_mall.util.Page;
 
 @Validated
 @RestController
@@ -33,7 +34,7 @@ public class ProductController {
 
     // 查詢商品列表功能
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(
+    public ResponseEntity<Page<Product>> getProducts(
             // 條件 Filtering
             @RequestParam(required= false) ProductCategory category, 
             @RequestParam(required= false) String search, 
@@ -55,9 +56,20 @@ public class ProductController {
         productQueryParams.setLimit(limit);
         productQueryParams.setOffset(offset);
 
+        // 取得product list
         List<Product> productList= productService.getProducts(productQueryParams);
 
-        return ResponseEntity.status(HttpStatus.OK).body(productList);
+        // 取得product總數
+        Integer total= productService.countProduct(productQueryParams);
+
+        // 分頁
+        Page<Product> page= new Page<>();
+        page.setLimit(limit);
+        page.setOffset(offset);
+        page.setTotal(total);
+        page.setResults(productList);
+
+        return ResponseEntity.status(HttpStatus.OK).body(page);
     }
     
     // 取得商品功能
