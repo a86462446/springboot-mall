@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hansliao.springboot_mall.constant.ProductCategory;
 import com.hansliao.springboot_mall.dao.ProductDao;
 import com.hansliao.springboot_mall.dto.ProductRequest;
 import com.hansliao.springboot_mall.model.Product;
@@ -36,7 +37,7 @@ public class ProductServiceImpl implements ProductService{
         productDao.deleteProductById(productId);
     }
 
-    public List<Product> getProducts(){
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductCategory category, String search){
+        return productDao.getProducts(category, search);
     }
 }
