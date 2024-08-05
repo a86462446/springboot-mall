@@ -108,6 +108,8 @@ public class ProductDaoImpl implements ProductDao{
 
         ProductCategory category= productQueryParams.getCategory();
         String search= productQueryParams.getSearch();
+        String orderBy= productQueryParams.getOrderBy();
+        String sort= productQueryParams.getSort();
 
         if(category!= null){
             sql= sql+ " AND category= :category";
@@ -118,6 +120,9 @@ public class ProductDaoImpl implements ProductDao{
             sql= sql+ " AND product_name LIKE :search";
             map.put("search", "%"+ search+ "%");
         }
+
+        // orderBy 不能用:orderBy，要用字串拼接
+        sql= sql+ " ORDER BY "+ orderBy+ " "+ sort;
 
         List<Product> productList= namedParameterJdbcTemplate.query(sql, map, new ProductRowMapper());
 
