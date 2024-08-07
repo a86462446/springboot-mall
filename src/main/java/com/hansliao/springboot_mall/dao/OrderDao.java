@@ -2,6 +2,7 @@ package com.hansliao.springboot_mall.dao;
 
 import java.util.List;
 
+import com.hansliao.springboot_mall.dto.OrderQueryParams;
 import com.hansliao.springboot_mall.model.Order;
 import com.hansliao.springboot_mall.model.OrderItem;
 
@@ -13,4 +14,8 @@ public interface OrderDao {
     Order getOrderById(Integer orderId);
 
     List<OrderItem> getOrderItemsByOrderId(Integer orderId);
+
+    List<Order> getOrders(OrderQueryParams orderQueryParams);
+    
+    Integer countOrder(OrderQueryParams orderQueryParams);
 }

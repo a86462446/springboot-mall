@@ -16,6 +16,7 @@ import com.hansliao.springboot_mall.dao.ProductDao;
 import com.hansliao.springboot_mall.dao.UserDao;
 import com.hansliao.springboot_mall.dto.BuyItem;
 import com.hansliao.springboot_mall.dto.CreateOrderRequest;
+import com.hansliao.springboot_mall.dto.OrderQueryParams;
 import com.hansliao.springboot_mall.model.Order;
 import com.hansliao.springboot_mall.model.OrderItem;
 import com.hansliao.springboot_mall.model.Product;
@@ -96,5 +97,15 @@ public class OrderServiceImpl implements OrderService{
         order.setOrderItemList(orderItemList);
 
         return order;
+    }
+
+    @Override
+    public List<Order> getOrders(OrderQueryParams orderQueryParams){
+        return orderDao.getOrders(orderQueryParams);
+    }
+
+    @Override
+    public Integer countOrder(OrderQueryParams orderQueryParams){
+        return orderDao.countOrder(orderQueryParams);
     }
 }
