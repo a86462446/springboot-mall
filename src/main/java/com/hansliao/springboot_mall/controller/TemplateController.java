@@ -52,4 +52,23 @@ public class TemplateController {
         String output = writer.toString();
         return output;
     }
+
+    // 註冊頁面
+    @GetMapping("/users/register")
+    public String showRegisterForm(){
+        PebbleEngine engine= new PebbleEngine.Builder().build();
+        PebbleTemplate compiledTemplate= engine.getTemplate("templates/register.html");
+        Writer writer = new StringWriter();
+
+        Map<String, Object> context = new HashMap<>();
+
+        try {
+            compiledTemplate.evaluate(writer, context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String output = writer.toString();
+        return output;
+    }
 }
