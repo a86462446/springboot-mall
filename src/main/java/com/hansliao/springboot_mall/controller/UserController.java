@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hansliao.springboot_mall.dto.UserLoginRequest;
@@ -24,7 +24,7 @@ public class UserController {
 
     // 用戶註冊
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@ModelAttribute @Valid UserRegisterRequest userRegisterRequest){
+    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
         Integer userId= userService.register(userRegisterRequest);
 
         User user= userService.getUserById(userId);
@@ -47,7 +47,7 @@ public class UserController {
 
     // 用戶登入
     @PostMapping("/users/login")
-    public ResponseEntity<User> login(@ModelAttribute @Valid UserLoginRequest userLoginRequest){
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
         User user= userService.login(userLoginRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(user);

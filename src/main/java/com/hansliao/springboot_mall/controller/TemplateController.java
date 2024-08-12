@@ -35,7 +35,7 @@ public class TemplateController {
     }
 
     // 登入頁面
-    @GetMapping("/users/login")
+    @GetMapping("/users/login/index")
     public String showLoginForm(){
         PebbleEngine engine= new PebbleEngine.Builder().build();
         PebbleTemplate compiledTemplate= engine.getTemplate("templates/login.html");
@@ -54,7 +54,7 @@ public class TemplateController {
     }
 
     // 註冊頁面
-    @GetMapping("/users/register")
+    @GetMapping("/users/register/index")
     public String showRegisterForm(){
         PebbleEngine engine= new PebbleEngine.Builder().build();
         PebbleTemplate compiledTemplate= engine.getTemplate("templates/register.html");
